@@ -1,0 +1,15 @@
+Tagovi
+#html stranica se definise tagovima u pozadini koristi parser
+#imamo tagove koji se zatvaraju(pair) i koji se ne zatvaraju(self-closing) 
+
+Atributi 
+#atributi dodatno opisuju element i definisu se u pocetnom tagu
+#najcesece se definisu kao key="value"
+#navodnici se postavljajaju uglavnom dvostruki spolja a jednostruki unutra
+
+HTML naslovi 
+#<h1> ima najveci prioritet za SEO sluze za dodjelu naslova
+#<hr/>horizontalna linija
+#<p>paragraf
+#<br/>novi red
+#<p>
