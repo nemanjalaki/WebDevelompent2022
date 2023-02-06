@@ -16,6 +16,17 @@ const win = [
 //selektor
 
 let cell = document.querySelectorAll(".cell");
+let statusMessage = document.querySelector(".status");
+
+// messages
+
+const winMsg = () => `Player ${player} has won!`;
+const evenMsg = () => `There is no winner!`;
+const playerTurn = () => `Player ${player} is on Move!`;
+
+// player on move
+
+statusMessage.innerHTML = playerTurn();
 
 // events
 
@@ -25,14 +36,17 @@ cell.forEach(function(item, index){
             item.textContent = player;
             table[index] = player;
         }
-        else{
-            table = ["","","","","","","","",""];
-            player = "X";
-        }
-        checkState();
+        // else{
+        //     // console.log("reset");
+        //     table = ["","","","","","","","",""];
+        //     player = "X";
+        //     document.querySelectorAll('.cell').forEach(cell => cell.innerHTML = "");
+        // }
         // console.log(index);
+        console.log(checkState());
         console.log(table);
         playerChange();
+        // statusMessage.innerHTML = playerTurn();
     })
 });
 // player change
@@ -48,18 +62,31 @@ function playerChange(){
 // check status 
 
 function checkState(){
+
     for (let i = 0; i < win.length; i++){
-        if (table[win[i][0]] === table[win[i][1]] && table[win[i][2]] === "X"){
-            return "Player X won!";
+        // console.log(table[win[i][0]]);
+        // console.log(table[win[i][1]]);
+        // console.log(table[win[i][2]]);
+        if (table[win[i][0]] === "X" && table[win[i][1]] === "X" && table[win[i][2]] === "X"){
+            // return "Player X won!";
+            statusMessage.innerHTML = winMsg();
+            break;
             // console.log("Player X won!");
+            // return;
         }
-        else if(table[win[i][0]] === table[win[i][1]] && table[win[i][2]] === "O"){
-            return "Player O won!";
+        else if(table[win[i][0]] === "O" && table[win[i][1]] === "O" && table[win[i][2]] === "O"){
+            // return "Player O won!";
+            statusMessage.innerHTML = winMsg();
+            break;
             // console.log("Player O won!");
+            // return;
         }
         else if (table.includes("") === false){
-            return "Even!";
+            // return "Even!";
+            statusMessage.innerHTML = evenMsg();
+            break;
             // console.log("Even!");
+            // return;
         }
     }
 }
