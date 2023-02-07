@@ -42,6 +42,8 @@ cell.forEach(function(item, index){
     })
 });
 
+// functions
+
 // player change
 function playerChange(){
     if (player === "X"){
@@ -59,31 +61,22 @@ function playerChange(){
 function checkState(){
 
     for (let i = 0; i < win.length; i++){
-        // console.log(table[win[i][0]]);
-        // console.log(table[win[i][1]]);
-        // console.log(table[win[i][2]]);
         if (table[win[i][0]] === "X" && table[win[i][1]] === "X" && table[win[i][2]] === "X"){
-            // return "Player X won!";
             statusMessage.innerHTML = winMsg();
             gameActive = false;
             return;
-            // console.log("Player X won!");
-            // return;
         }
         else if(table[win[i][0]] === "O" && table[win[i][1]] === "O" && table[win[i][2]] === "O"){
-            // return "Player O won!";
             statusMessage.innerHTML = winMsg();
             gameActive = false;
             return;
-            // console.log("Player O won!");
-            // return;
         }
         else if (table.includes("") === false){
-            // return "Even!";
-            statusMessage.innerHTML = evenMsg();
-            gameActive = false;
-            return;
-            // console.log("Even!");
+            // statusMessage.innerHTML = evenMsg();
+            player = "O";
+            table = ["","","","","","","","",""];
+            cell.forEach(function(item){item.innerHTML = ""});
+            gameActive = true;
             // return;
         }
     }
