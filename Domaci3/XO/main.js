@@ -2,6 +2,8 @@
 let player = "X";
 // define empty table 
 let table = ["","","","","","","","",""];
+// state of the game
+let gameActive = true;
 // win state
 const win = [
     [0,1,2],
@@ -32,29 +34,22 @@ statusMessage.innerHTML = playerTurn();
 
 cell.forEach(function(item, index){
     item.addEventListener("click", function(){
-        if (item.innerHTML === "" && table.includes("")){
+        if (item.innerHTML === "" && table.includes("") && gameActive === true){
             item.textContent = player;
             table[index] = player;
+            checkState();
         }
-        // else{
-        //     // console.log("reset");
-        //     table = ["","","","","","","","",""];
-        //     player = "X";
-        //     document.querySelectorAll('.cell').forEach(cell => cell.innerHTML = "");
-        // }
-        // console.log(index);
-        console.log(checkState());
-        console.log(table);
-        playerChange();
-        // statusMessage.innerHTML = playerTurn();
     })
 });
+
 // player change
 function playerChange(){
     if (player === "X"){
         player = "O";
+        statusMessage.innerHTML = playerTurn();
     }else{
         player = "X";
+        statusMessage.innerHTML = playerTurn();
     }
     return player;
 }
@@ -70,23 +65,27 @@ function checkState(){
         if (table[win[i][0]] === "X" && table[win[i][1]] === "X" && table[win[i][2]] === "X"){
             // return "Player X won!";
             statusMessage.innerHTML = winMsg();
-            break;
+            gameActive = false;
+            return;
             // console.log("Player X won!");
             // return;
         }
         else if(table[win[i][0]] === "O" && table[win[i][1]] === "O" && table[win[i][2]] === "O"){
             // return "Player O won!";
             statusMessage.innerHTML = winMsg();
-            break;
+            gameActive = false;
+            return;
             // console.log("Player O won!");
             // return;
         }
         else if (table.includes("") === false){
             // return "Even!";
             statusMessage.innerHTML = evenMsg();
-            break;
+            gameActive = false;
+            return;
             // console.log("Even!");
             // return;
         }
     }
+    playerChange();
 }
